@@ -1,0 +1,14 @@
+.explore-menu-list::-webkit-scrollbar{
+    display: none;
+}
+.explore-menu-list {
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+/* Example in ExploreMenu.css */
+.active {
+  border: 4px solid tomato;
+  border-radius: 100%;
+  padding: 2px;
+}
