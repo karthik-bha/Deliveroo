@@ -9,7 +9,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
     <div className="rounded-lg shadow-md">
       <div className="relative">
         <img src={image} />
-        {!cartItems[id] ? (
+        {!cartItems[id] ? ( 
           <div className=" absolute bottom-[15px] right-[15px]">
             <img
               src={assets.add_icon_white}

@@ -4,12 +4,13 @@ import ExploreMenu from '../../components/ExploreMenu/ExploreMenu'
 import { Helmet } from "react-helmet";
 import FoodDisplay from '../../components/FoodDisplay/FoodDisplay';
 import Footer from '../../components/Footer/Footer';
+import AppDownload from '../../components/AppDownload/AppDownload';
 
 
 const Home = () => {
   const [category, setCategory] = useState("All");
   return (
-    <div className=" font-[Outfit]">
+    <div className=" font-[Outfit]" >
       <Helmet>
         <title>Home - Deliveroo</title>
         <meta
@@ -20,23 +21,14 @@ const Home = () => {
       </Helmet>
       <Header />
       <main className='max-w-[1200px] mx-auto'>
-        <div className="ml-4 my-4">
-          <h1 className="text-2xl my-4 md:text-4xl font-semibold">
-            Explore our menu
-          </h1>
-          <p className="text-[14px] md:text-[18px] my-4">
-            Choose from a diverse menu of delectable array of dishes. Our
-            mission is to satisfy your cravings.
-          </p>
-        </div>
+        
         <ExploreMenu category={category} setCategory={setCategory} />
         <hr className="h-[2px] mt-[10px] border-none bg-slate-100" />
 
         <FoodDisplay category={category} />
+        <AppDownload/>
       </main>
-      <footer>
-        <Footer />
-      </footer>
+      
     </div>
   );
 }

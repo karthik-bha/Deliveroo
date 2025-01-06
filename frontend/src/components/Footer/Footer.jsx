@@ -3,7 +3,7 @@ import { assets } from "../../assets/assets/frontend_assets/assets";
 
 const Footer = () => {
   return (
-    <div className="mt-4 bg-[#323232]">
+    <div className="mt-4 bg-[#323232]" id="Footer">
       <div className="max-w-[1300px] mx-auto flex flex-col md:flex-row justify-around gap-4 text-white text-center md:text-left items-center md:items-start">
         <div className="p-4 max-w-[500px] ">
           <div>
@@ -26,7 +26,7 @@ const Footer = () => {
         </div>
 
         <div className="max-w-[300px] pt-6 ">
-          <h2 className="font-bold text-[16px] md:text-2xl  text-center">
+          <h2 className="font-bold text-[16px] md:text-2xl ">
             COMPANY
           </h2>
           <ul className="flex flex-col gap-2 mt-2">
@@ -47,12 +47,14 @@ const Footer = () => {
 
         <div className="max-w-[500px] pt-6  ">
           <h2 className="font-bold text-[16px] md:text-2xl  ">GET IN TOUCH</h2>
-          <ul className="flex flex-col mt-2 gap-2">
+          <ul className="flex flex-col my-2 gap-2">
             <li>+61-3-9825-2300</li>
             <li>contactSupp@Deliveroo.com</li>
           </ul>
         </div>
       </div>
+      <hr className="  bg-white max-w-[1100px] mx-auto" />
+      <p className="text-center text-white mt-2">Copyright 2025 &copy; Deliveroo.com</p>
     </div>
   );
 };
