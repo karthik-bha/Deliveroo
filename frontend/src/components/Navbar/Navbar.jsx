@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { assets } from "../../assets/assets/frontend_assets/assets";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import { StoreContext } from "../../context/StoreContext";
 
 const Navbar = ({ setLogin }) => {
   const [open, setOpen] = useState(false);
   const [goTo, setgoTo] = useState("home");
-
+  const {getTotal}= useContext(StoreContext);
   return (
     <>
       <div className="font-[Outfit] flex items-center justify-around p-4 md:p-6 max-w-[1200px] mx-auto shadow-md rounded-md">
@@ -55,13 +56,17 @@ const Navbar = ({ setLogin }) => {
             alt="search"
             className="w-[25px] h-auto hover:cursor-pointer"
           />
+          <div className="relative">
           <Link to="/cart">
             <img
               src={assets.basket_icon}
               alt="basket"
-              className="w-[25px] h-auto hover:cursor-pointer"
+              className="w-[25px] h-auto hover:cursor-pointer "
             />
+            <div className={getTotal()>0?"dot":""}></div>
+            
           </Link>
+          </div>
           <button
             className="hover:font-semibold text-[16px] md:text-[18px]"
             onClick={() => setLogin(true)}

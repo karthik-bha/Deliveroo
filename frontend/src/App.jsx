@@ -10,7 +10,7 @@ import Footer from "./components/Footer/Footer";
 function App() {
   const [login, setLogin] = useState(false);
   return (
-    <>
+    <div className="h-screen">
       {login && <LoginPopUp setLogin={setLogin} />}
       <header>
         <Navbar setLogin={setLogin} />
@@ -22,10 +22,10 @@ function App() {
           <Route path="/order" element={<PlaceOrder />} />
         </Routes>
       </main>
-      <footer>
+      <footer >
         <Footer />
       </footer>
-    </>
+    </div>
   );
 }
 
