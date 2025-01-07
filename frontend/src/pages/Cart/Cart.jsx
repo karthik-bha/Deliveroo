@@ -1,10 +1,12 @@
 import React, { useContext } from 'react'
 import { StoreContext } from '../../context/StoreContext'
-import Footer from "../../components/Footer/Footer";
+import { useNavigate } from "react-router";
+
 const Cart = () => {
-  const { food_list, cartItems, removeFromCart } =useContext(StoreContext);
+  const { food_list, cartItems, removeFromCart , getTotal} =useContext(StoreContext);
+  const navigate= useNavigate();
   return (
-    <div className="h-screen">
+    <div className="mb-12">
       <div className="max-w-[1200px] mx-auto font-[Outfit]  ">
         <div className="mt-12 mx-2">
           <div className="grid grid-cols-6 text-slate-500 ">
@@ -45,23 +47,26 @@ const Cart = () => {
             <h2 className="text-3xl font-bold mb-6">Cart Total</h2>
             <div className="flex justify-between">
               <p>Subtotal</p>
-              <p>{0}</p>
+              <p>${getTotal()}</p>
             </div>
             <hr className="bg-black h-[1px] my-1 border-none" />
             <div className="flex justify-between">
               <p>Delivery Fee </p>
-              <p>{0}</p>
+              <p>${2}</p>
             </div>
             <hr className="bg-black h-[1px] my-1 border-none" />
             <div className="flex justify-between">
               <p>Total</p>
-              <p>{0}</p>
+              <p>${getTotal()+2}</p>
             </div>
             <div className="mt-6">
-              <button className="bg-[tomato] px-6 py-2 rounded-md text-white hover:text-black">
+            
+              <button className="bg-[tomato] px-6 py-2 rounded-md text-white hover:text-black"
+              onClick={()=>navigate("/order")}>
                 PROCEED TO CHECKOUT
               </button>
-            </div>
+           
+            </div> 
           </div>
           <div className="mt-6 md:w-[350px] lg:w-[500px] text-[18px] text-slate-500">
             <p>If you have a promo code, Enter it here</p>
