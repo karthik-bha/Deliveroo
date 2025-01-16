@@ -2,25 +2,49 @@ import foodModel from "../models/foodModel.js";
 import fs from "fs";
 
 //add food item
-const addFood=async(req, res)=>{
-  
-        let image_filename=`${req.file.filename}`;
-        const {name, description, price, category}= req.body;
-        const food=new foodModel({
-            name:name,
-            description:description,
-            price:price,
-            category:category,
-            image:image_filename
-        })
-    try{
+const addFood = async (req, res) => {
+
+    let image_filename = `${req.file.filename}`;
+    const { name, description, price, category } = req.body;
+    const food = new foodModel({
+        name: name,
+        description: description,
+        price: price,
+        category: category,
+        image: image_filename
+    })
+    try {
         await food.save();
-        res.json({success:true, message:"saved"});
+        res.json({ success: true, message: "saved" });
     }
-    catch(err){
+    catch (err) {
         console.err(err);
-        res.json({success:false});
+        res.json({ success: false });
     }
 }
 
-export{addFood};
+const listFood = async (req, res) => {
+    try {
+        const foods = await foodModel.find({});
+        if(foods.length===0){
+            return  res.status(200).json({message:"No items present"});
+        }
+        res.status(200).json({ success: true, data: foods, message:"Items Retrieved" });
+    }
+    catch (err) {
+        res.status(500).json({ success: false, message: "Error during fetch" });
+    }
+}
+
+const removeFood=async(req, res)=>{
+    const {id}=req.params;
+    try{
+        let deletedFood=await foodModel.findByIdAndDelete(id);
+        fs.unlink(`uploads/${food.image}`, ()=>{})
+         
+        res.status(200).json({success:true, data:deletedFood});
+    }catch(err){
+        res.status(500).json({ success: false, message: err });
+    }
+}
+export { addFood, listFood, removeFood };
