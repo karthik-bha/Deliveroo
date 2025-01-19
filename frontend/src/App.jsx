@@ -6,11 +6,13 @@ import PlaceOrder from "./pages/PlaceOrder/PlaceOrder"
 import { useState } from "react"
 import LoginPopUp from "./components/LoginPopUp/LoginPopUp"
 import Footer from "./components/Footer/Footer";
+import { ToastContainer } from "react-toastify"
 
 function App() {
   const [login, setLogin] = useState(false);
   return (
     <div className="h-screen">
+      <ToastContainer />
       {login && <LoginPopUp setLogin={setLogin} />}
       <header>
         <Navbar setLogin={setLogin} />

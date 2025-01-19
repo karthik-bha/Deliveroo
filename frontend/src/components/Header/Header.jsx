@@ -3,7 +3,7 @@ import './header.css'
 const Header = () => {
     return (
       <div className='font-[Outfit]' id="Header">
-        <div className="md:relative h-[50vh] rounded-md bg-[url('/header_img.png')] max-w-[1200px] bg-cover bg-no-repeat bg-center mx-auto  my-4">
+        <div className="md:relative aspect-[1/1] md:aspect-[16/9]  rounded-md bg-[url('/header_img.png')] max-w-[1200px] bg-cover bg-no-repeat bg-center mx-auto  my-4">
           <div className="mx-auto text-center md:text-left md:m-12 text-white flex flex-col gap-6  bottom-0 md:absolute max-w-[45%] header-content">
             <h1 className="pt-12 md:py-0 text-[32px] md:text-6xl font-semibold">
               Order your favourite food here
