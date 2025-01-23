@@ -40,7 +40,7 @@ const removeFood=async(req, res)=>{
     const {id}=req.params;
     try{
         let deletedFood=await foodModel.findByIdAndDelete(id);
-        // fs.unlink(`uploads/${food.image}`, ()=>{})
+        fs.unlink(`uploads/${food.image}`, ()=>{})
         res.status(200).json({success:true, data:deletedFood, message:"Successfully deleted"});
     }catch(err){
         res.status(500).json({ success: false, message: "Deletion unsccessful" });

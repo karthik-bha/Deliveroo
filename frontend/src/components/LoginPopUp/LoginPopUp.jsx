@@ -6,11 +6,11 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 
 const LoginPopUp = ({ setLogin }) => {
-  
+
   const { url, setToken } = useContext(StoreContext)
-  
+
   const [Title, setTitle] = useState("SignUp")
-  
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -28,7 +28,7 @@ const LoginPopUp = ({ setLogin }) => {
   const onLogin = async (e) => {
     e.preventDefault();
     let newUrl = url;
-    try {
+    try { 
       if (Title === "Login") {
         newUrl += "/api/user/login";
       } else {
@@ -40,7 +40,7 @@ const LoginPopUp = ({ setLogin }) => {
         localStorage.setItem("token", response.data.token);
         toast.success(response.data.message);
         setLogin(false);
-      }else{
+      } else {
         toast.error(response.data.message);
       }
       // toast.success(response.data.message);

@@ -1,13 +1,24 @@
 import React, { useContext, useState } from "react";
 import { assets } from "../../assets/assets/frontend_assets/assets";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { StoreContext } from "../../context/StoreContext";
 
 const Navbar = ({ setLogin }) => {
   const [open, setOpen] = useState(false);
   const [goTo, setgoTo] = useState("home");
-  const {getTotal}= useContext(StoreContext);
+  const {getTotal, token, setToken}= useContext(StoreContext);
+  const[profiledrop, setProfileDrop]=useState(false);
+
+  function handleDropDown(){
+    setProfileDrop(!profiledrop);
+  }
+  const navigate=useNavigate();
+  function logout(){
+    localStorage.removeItem('token');
+    setToken("");
+    navigate("/");
+  }
   return (
     <>
       <div className="font-[Outfit] flex items-center justify-around p-4 md:p-6 max-w-[1200px] mx-auto shadow-md rounded-md">
@@ -67,12 +78,27 @@ const Navbar = ({ setLogin }) => {
             
           </Link>
           </div>
-          <button
+          {token?<div className="relative">
+            <img src={assets.profile_icon} alt="profile_pfp" width={20} onClick={handleDropDown}
+            className="hover:cursor-pointer"
+            />
+            <ul 
+            className={profiledrop? "mt-2 border border-[tomato] absolute z-50 rounded-md bg-white flex flex-col flex-wrap items-center gap-2 w-[100px] p-2 text-[14px]"
+            :"hidden"}>
+              <li className="flex gap-2 hover:text-[tomato] hover:cursor-pointer"><img src={assets.bag_icon} width={25} alt="cart"/><p>Orders</p></li>
+              <li className="flex gap-2 hover:text-[tomato] hover:cursor-pointer" onClick={logout}>
+                <img src={assets.logout_icon}  width={25}alt="logout"/>
+                <p>Logout</p></li>
+            </ul>
+          </div>:<>
+            <button
             className="hover:font-semibold text-[16px] md:text-[18px]"
             onClick={() => setLogin(true)}
           >
             Sign In
           </button>
+          </>}
+         
         </div>
 
         {open ? (

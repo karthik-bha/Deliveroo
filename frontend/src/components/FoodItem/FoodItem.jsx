@@ -1,15 +1,17 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import { assets } from "../../assets/assets/frontend_assets/assets";
 import { StoreContext } from "../../context/StoreContext";
 
 const FoodItem = ({ id, name, price, description, image }) => {
 
-  const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
+  const { cartItems, addToCart, removeFromCart, url } = useContext(StoreContext);
   return (
     <div className="rounded-lg shadow-md">
-      <div className="relative">
-        <img src={image} />
-        {!cartItems[id] ? ( 
+      <div className="relative ">
+    
+          <img src={url + "/images/" + image} className="object-cover w-full max-h-[200px]" />
+     
+        {!cartItems[id] ? (
           <div className=" absolute bottom-[15px] right-[15px]">
             <img
               src={assets.add_icon_white}
