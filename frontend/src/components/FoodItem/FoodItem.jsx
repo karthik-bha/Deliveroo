@@ -3,51 +3,56 @@ import { assets } from "../../assets/assets/frontend_assets/assets";
 import { StoreContext } from "../../context/StoreContext";
 
 const FoodItem = ({ id, name, price, description, image }) => {
-
   const { cartItems, addToCart, removeFromCart, url } = useContext(StoreContext);
-  return (
-    <div className="rounded-lg shadow-md">
-      <div className="relative ">
-    
-          <img src={url + "/images/" + image} className="object-cover w-full max-h-[200px]" />
-     
-        {!cartItems[id] ? (
-          <div className=" absolute bottom-[15px] right-[15px]">
-            <img
-              src={assets.add_icon_white}
-              width={40}
-              onClick={() => addToCart(id)}
-              alt="add"
-            />
-          </div>
-        ) : (
-          <div className="absolute bottom-[15px] right-[15px] flex gap-2 items-center bg-white rounded-full">
-            <img
-              src={assets.remove_icon_red}
-              onClick={() => removeFromCart(id)}
-              alt="remove"
-            />
-            <p>{cartItems[id]}</p>
 
-            <img
-              src={assets.add_icon_green}
+  return (
+    <div className="rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+      {/* Image Section */}
+      <div className="relative">
+        <img
+          src={`${url}/images/${image}`}
+          alt={name}
+          className="w-full h-32 md:h-48 object-cover"
+        />
+
+        {/* Add/Remove Cart Buttons */}
+        {!cartItems[id] ? (
+          <button
+            className="absolute bottom-4 right-4 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition-colors duration-200"
+            onClick={() => addToCart(id)}
+            aria-label={`Add ${name} to cart`}
+          >
+            <img src={assets.add_icon_white} width={24} alt="Add to cart" />
+          </button>
+        ) : (
+          <div className="absolute bottom-4 right-4 flex items-center gap-2 bg-white rounded-full p-2 shadow-md">
+            <button
+              onClick={() => removeFromCart(id)}
+              aria-label={`Remove one ${name} from cart`}
+            >
+              <img src={assets.remove_icon_red} width={20} alt="Remove from cart" />
+            </button>
+            <p className="text-sm font-semibold">{cartItems[id]}</p>
+            <button
               onClick={() => addToCart(id)}
-              alt="add"
-            />
+              aria-label={`Add one more ${name} to cart`}
+            >
+              <img src={assets.add_icon_green} width={20} alt="Add to cart" />
+            </button>
           </div>
         )}
       </div>
-      <div>
-        <div className="flex flex-col md:flex-row md:justify-between m-2 items-center">
-          <h2 className="font-[500] text-[16px] md:text-[22px]">{name}</h2>
-          <img src={assets.rating_starts} className="h-[16px]" />
+
+      {/* Details Section */}
+      <div className="p-4">
+        <div className="flex justify-between items-center mb-2">
+          <h2 className="text-lg md:text-xl font-semibold">{name}</h2>
+          <img src={assets.rating_starts} alt="Rating" className="h-4 md:h-5" />
         </div>
-        <div className="m-2">
-          <p className="text-slate-500">{description}</p>
-        </div>
-        <div className="m-2 mb-4">
-          <p className="text-[20px] text-[tomato] font-semibold text-center md:text-left">${price}</p>
-        </div>
+        <p className="text-sm text-gray-600 mb-4">{description}</p>
+        <p className="text-xl text-tomato font-semibold text-center md:text-left">
+          ${price}
+        </p>
       </div>
     </div>
   );

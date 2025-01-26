@@ -8,6 +8,8 @@ import LoginPopUp from "./components/LoginPopUp/LoginPopUp"
 import Footer from "./components/Footer/Footer";
 import { ToastContainer } from "react-toastify"
 import Verify from "./pages/verify/Verify"
+import MyOrders from "./pages/MyOrders/MyOrders"
+import Usage from "./pages/Usage/Usage"
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -15,15 +17,17 @@ function App() {
     <div className="h-screen">
       <ToastContainer />
       {login && <LoginPopUp setLogin={setLogin} />}
-      <header>
-        <Navbar setLogin={setLogin} />
-      </header>
+
+      <Navbar setLogin={setLogin} />
+
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/order" element={<PlaceOrder />} />
           <Route path="/verify" element={<Verify />} />
+          <Route path="/myorders" element={<MyOrders />} />
+          <Route path="/how-to-use" element={<Usage/>}/>
         </Routes>
       </main>
       <footer >

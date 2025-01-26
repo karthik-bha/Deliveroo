@@ -1,46 +1,54 @@
 import React from "react";
 import { menu_list } from "../../assets/assets/frontend_assets/assets";
-import "./ExploreMenu.css";
 
 const ExploreMenu = ({ category, setCategory }) => {
   return (
-    <div id="Menu">
-      <div className="ml-4 my-4">
-        <h1 className="text-2xl my-4 md:text-4xl font-semibold">
+    <div id="Menu" className="p-4">
+      {/* Header Section */}
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-2xl md:text-4xl font-semibold mb-4">
           Explore our menu
         </h1>
-        <p className="text-[14px] md:text-[18px] my-4">
+        <p className="text-sm md:text-lg text-gray-600 mb-8">
           Choose from a diverse menu of delectable array of dishes. Our mission
           is to satisfy your cravings.
         </p>
       </div>
-      <div className="max-w-[1200px] flex gap-6 overflow-auto overscroll-x-none mx-auto items-center h-auto my-4 explore-menu-list ">
-        {menu_list.map((items) => {
-          return (
+
+      {/* Menu List Section */}
+      <div className="max-w-6xl py-4 mx-auto overflow-x-auto no-scrollbar">
+        <div className="flex gap-4 md:gap-8 justify-start items-center">
+          {menu_list.map((item) => (
             <div
-              className="text-center sm:w-[100px] sm:h-[100px] md:w-[200px] md:h-[200px] mx-4 flex flex-col"
-              key={items.menu_name} // Use unique identifier from the item, e.g., menu_name
+              key={item.menu_name}
+              className="flex flex-col items-center text-center w-24 md:w-40"
             >
-              <div
-                className="w-[75px] h-[75px] md:w-[150px] md:h-[150px] li-item"
+              {/* Menu Item Image */}
+              <button
+                className={`w-16 h-16 md:w-32 md:h-32 rounded-full overflow-hidden transition-transform transform hover:scale-105 focus:outline-none ${
+                  category === item.menu_name ? "border-2 border-orange-500" : ""
+                }`}
                 onClick={() =>
                   setCategory((prev) =>
-                    prev === items.menu_name ? "All" : items.menu_name
+                    prev === item.menu_name ? "All" : item.menu_name
                   )
                 }
+                aria-label={`Filter by ${item.menu_name}`}
               >
                 <img
-                  src={items.menu_image}
-                  className={`object-contain items-center mx-auto hover:cursor-pointer ${
-                    category === items.menu_name ? "active" : ""
-                  }`}
-                  alt={items.menu_name}
+                  src={item.menu_image}
+                  alt={item.menu_name}
+                  className="w-full h-full object-cover"
                 />
-              </div>
-              <p className="font-semibold text-[16px]">{items.menu_name}</p>
+              </button>
+
+              {/* Menu Item Name */}
+              <p className="mt-2 text-sm md:text-lg font-semibold">
+                {item.menu_name}
+              </p>
             </div>
-          );
-        })}
+          ))}
+        </div>
       </div>
     </div>
   );

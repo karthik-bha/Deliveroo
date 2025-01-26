@@ -14,3 +14,15 @@
     top: -6px;
     right:0;
 }
+
+@keyframes nav-ani{
+    from{
+        transform: translateX(-100%);
+    }to{
+        transform: translateY(0%);
+    }
+}
+
+.nav-animation{
+    animation: nav-ani 1s;
+}

@@ -50,6 +50,7 @@ const Footer = () => {
           <ul className="flex flex-col my-2 gap-2">
             <li>+61-3-9825-2300</li>
             <li>contactSupp@Deliveroo.com</li>
+            <a href="#Navbar"className="hover:scale-105 hover:font-semibold" >Go Up &uarr;</a>
           </ul>
         </div>
       </div>
