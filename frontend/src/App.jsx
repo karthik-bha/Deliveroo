@@ -7,7 +7,7 @@ import { useState } from "react"
 import LoginPopUp from "./components/LoginPopUp/LoginPopUp"
 import Footer from "./components/Footer/Footer";
 import { ToastContainer } from "react-toastify"
-import Verify from "./pages/verify/Verify"
+import Verify from "./pages/Verify/Verify"
 import MyOrders from "./pages/MyOrders/MyOrders"
 import Usage from "./pages/Usage/Usage"
 
