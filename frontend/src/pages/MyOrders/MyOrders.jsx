@@ -26,7 +26,7 @@ const MyOrders = () => {
         }
     }, [token])
     return (
-        <div className='text-center h-[80vh]'>
+        <div className='text-center min-h-[80vh]'>
             <h2 className='my-12 font-bold text-[2rem]'>My Orders</h2>
             <div className='my-12'>
                 {data.map((order, index)=>{
