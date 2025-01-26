@@ -12,7 +12,7 @@ export const addToCart = async (req, res) => {
         await userModel.findByIdAndUpdate(req.body.userId, { cartData });
         return res.status(200).json({ success: true, message: "Added to cart!" });
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         return res.status(500).json({ success: false, message: "Unable to update cart!" });
     }
 }
@@ -30,7 +30,7 @@ export const removeFromCart = async (req, res) => {
         return res.status(200).json({ message: "removed from cart", success: true });
 
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         return res.status(500).json({ success: false, message: "Unable to update cart!" });
     }
 }
@@ -40,7 +40,7 @@ export const getCart = async (req, res) => {
         const cartData=await user.cartData;
         res.status(200).json({ message: "Fetch success", success: true, cart:cartData });
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         return res.status(500).json({ success: false, message: "Unable to fetch!" });
     }
 }

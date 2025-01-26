@@ -10,7 +10,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
       {/* Image Section */}
       <div className="relative">
         <img
-          src={`${url}/images/${image}`}
+          src={image}
           alt={name}
           className="w-full h-32 md:h-48 object-cover"
         />

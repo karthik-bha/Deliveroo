@@ -70,7 +70,8 @@ const PlaceOrder = () => {
         alert("Error");
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
+      toast.error("Error placing orders");
     }
   }
 

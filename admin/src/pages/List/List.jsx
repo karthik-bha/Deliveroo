@@ -62,7 +62,7 @@ const List = ({ url }) => {
                 {/* Image */}
                 <div className="flex items-center justify-center md:justify-start">
                   <img
-                    src={`${url}/images/${item.image}`}
+                    src={item.image}
                     alt={item.name}
                     className="w-[60px] h-[45px] md:w-[40px] md:h-[30px] object-cover rounded-lg"
                   />

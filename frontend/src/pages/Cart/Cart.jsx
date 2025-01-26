@@ -31,7 +31,7 @@ const Cart = () => {
                 {/* Item Image */}
                 <div className="w-full md:w-auto">
                   <img 
-                    src={url+"/images/"+items.image} 
+                    src={items.image} 
                     alt={items.name}
                     className="w-20 h-20 object-cover mx-auto md:mx-0 rounded-lg"
                   />

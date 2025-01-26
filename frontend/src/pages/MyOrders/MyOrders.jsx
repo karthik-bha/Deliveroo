@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios';
 import { assets } from '../../assets/assets/frontend_assets/assets';
+import {toast} from "react-toastify";
 
 const MyOrders = () => {
     const [data, setData] = useState([])
@@ -14,7 +15,9 @@ const MyOrders = () => {
             setData(paidOrders);
             // console.log(response.data.data);
         } catch (err) {
-            console.log(err);
+            // console.log(err);
+            toast.error("Error fetching orders");
+
         }
     }
     useEffect(() => {

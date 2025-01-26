@@ -10,7 +10,7 @@ export const authMiddleware=async(req,res,next)=>{
         req.body.userId=token_decode.id;
         next();
     }catch(err){
-        console.log(err);
+        // console.log(err);
         return res.json({success:false, message:"Error"});
     }
 }
