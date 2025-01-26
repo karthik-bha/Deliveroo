@@ -47,7 +47,7 @@ const LoginPopUp = ({ setLogin }) => {
     setLoading(true); // Start loading
 
     try {
-      const endpoint = title === 'Login' ? '/api/user/login' : '/api/user/register';
+      const endpoint = title === 'Login' ? 'api/user/login' : 'api/user/register';
       const response = await axios.post(url + endpoint, form);
 
       if (response.data.success) {

@@ -9,7 +9,7 @@ const List = ({ url }) => {
   // Fetch the list of foods
   const fetchList = async () => {
     try {
-      const response = await axios.get(`${url}/api/food/list`);
+      const response = await axios.get(`${url}api/food/list`);
       setList(response.data.data);
       toast.success(response.data.message);
     } catch (err) {
@@ -22,7 +22,7 @@ const List = ({ url }) => {
   // Delete a food item
   const deleteItem = async (id) => {
     try {
-      const response = await axios.delete(`${url}/api/food/delete/${id}`);
+      const response = await axios.delete(`${url}api/food/delete/${id}`);
       setList((prevList) => prevList.filter((item) => item._id !== id));
       toast.success(response.data.message);
     } catch (err) {

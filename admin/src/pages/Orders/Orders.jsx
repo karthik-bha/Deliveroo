@@ -11,7 +11,7 @@ const Orders = ({ url }) => {
   // Fetch all orders
   const fetchAllOrders = async () => {
     try {
-      const response = await axios.get(url + '/api/order/list');
+      const response = await axios.get(url + 'api/order/list');
 
       if (response.data.success) {
         setOrders(response.data.data);
@@ -30,7 +30,7 @@ const Orders = ({ url }) => {
   // Update order status
   const statusHandler = async (e, orderId) => {
     try {
-      const response = await axios.post(url + '/api/order/status', {
+      const response = await axios.post(url + 'api/order/status', {
         orderId,
         status: e.target.value,
       });
@@ -59,7 +59,7 @@ const Orders = ({ url }) => {
   // Delete order handler
   const deleteOrder = async (id) => {
     try {
-      const response = await axios.delete(`${url}/api/order/delete/${id}`);
+      const response = await axios.delete(`${url}api/order/delete/${id}`);
       if (response.data.success) {
         setOrders(prevOrders => prevOrders.filter(order => order._id !== id));
         toast.success('Order deleted successfully');

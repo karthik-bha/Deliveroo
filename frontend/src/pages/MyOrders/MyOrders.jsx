@@ -10,7 +10,7 @@ const MyOrders = () => {
 
     const fetchOrders = async () => {
         try {
-            const response = await axios.post(url + "/api/order/userorders", {}, { headers: { token } });
+            const response = await axios.post(url + "api/order/userorders", {}, { headers: { token } });
             const paidOrders = response.data.data.filter(order => order.payment === true);
             setData(paidOrders);
             // console.log(response.data.data);
