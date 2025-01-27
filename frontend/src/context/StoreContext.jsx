@@ -7,9 +7,42 @@ const StoreContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
     const [token, setToken] = useState("");
     const [food_list, setFoodList] = useState([]);
+    const [loader, setLoader] = useState(false);
     const url = import.meta.env.VITE_API_URL;
 
+    // Fetch Food List
+ 
+    const fetchFoodList = async () => {
+        setLoader(true);
+        try {
+            
+            const response = await axios.get(`${url}api/food/list`);
+            setFoodList(response.data.data || []);
+        } catch (err) {
+            console.error("Error fetching food list:", err);
+        } finally {
+            setLoader(false);
+        }
+    };
+
+    // Load Cart Data
+    const loadCartData = async (authToken) => {
+        setLoader(true);
+        try {
+            const response = await axios.get(`${url}api/cart/get`, {
+                headers: { token: authToken },
+            });
+            setCartItems(response.data.cart || {});
+        } catch (err) {
+            console.error("Error loading cart data:", err);
+        } finally {
+            setLoader(false);
+        }
+    };
+
+    // Add to Cart
     const addToCart = async (itemId) => {
+        setLoader(true);
         try {
             setCartItems((prev) => ({
                 ...prev,
@@ -20,10 +53,14 @@ const StoreContextProvider = (props) => {
             }
         } catch (err) {
             console.error("Error adding to cart:", err);
+        } finally {
+            setLoader(false);
         }
     };
 
+    // Remove from Cart
     const removeFromCart = async (itemId) => {
+        setLoader(true);
         try {
             setCartItems((prev) => {
                 const updated = { ...prev, [itemId]: (prev[itemId] || 1) - 1 };
@@ -38,20 +75,12 @@ const StoreContextProvider = (props) => {
             }
         } catch (err) {
             console.error("Error removing from cart:", err);
+        } finally {
+            setLoader(false);
         }
     };
 
-    const loadCartData = async (authToken) => {
-        try {
-            const response = await axios.get(`${url}api/cart/get`, {
-                headers: { token: authToken },
-            });
-            setCartItems(response.data.cart || {});
-        } catch (err) {
-            console.error("Error loading cart data:", err);
-        }
-    };
-
+    // Calculate Total Price
     const getTotal = () => {
         return Object.keys(cartItems).reduce((total, itemId) => {
             const itemInfo = food_list.find((product) => product._id === itemId);
@@ -62,17 +91,10 @@ const StoreContextProvider = (props) => {
         }, 0);
     };
 
-    const fetchFoodList = async () => {
-        try {
-            const response = await axios.get(`${url}api/food/list`);
-            setFoodList(response.data.data || []);
-        } catch (err) {
-            console.error("Error fetching food list:", err);
-        }
-    };
-
+    // Load Data on Initial Render
     useEffect(() => {
         const loadData = async () => {
+            setLoader(true);
             try {
                 await fetchFoodList();
                 const storedToken = localStorage.getItem("token");
@@ -82,11 +104,14 @@ const StoreContextProvider = (props) => {
                 }
             } catch (err) {
                 console.error("Error loading data:", err);
+            } finally {
+                setLoader(false);
             }
         };
         loadData();
-    }, []);
+    }, [url]); // Added dependency
 
+    // Context Value
     const contextValue = {
         food_list,
         cartItems,
@@ -97,6 +122,7 @@ const StoreContextProvider = (props) => {
         url,
         token,
         setToken,
+        loader,
     };
 
     return (
